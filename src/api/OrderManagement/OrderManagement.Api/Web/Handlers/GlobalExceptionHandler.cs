@@ -1,8 +1,8 @@
-using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OrderManagement.Api.Handlers;
+namespace OrderManagement.Api.Web.Handlers;
 
 internal class GlobalExceptionHandler(IProblemDetailsService problemDetailsService): IExceptionHandler
 {
@@ -13,7 +13,6 @@ internal class GlobalExceptionHandler(IProblemDetailsService problemDetailsServi
             Status = exception switch
             {
                 ArgumentException => StatusCodes.Status400BadRequest,
-                ValidationException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             },
             Title = "An error occurred",

@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
 using OrderManagement.Api.Application.Composition;
-using OrderManagement.Api.Handlers;
 using OrderManagement.Api.Infrastructure.Composition;
 using OrderManagement.Api.Infrastructure.Database;
+using OrderManagement.Api.Web.Handlers;
 
 [assembly: InternalsVisibleTo("OrderManagement.Api.UnitTests")]
 
@@ -17,11 +17,15 @@ builder.Services
     .AddHsts(opts => { opts.MaxAge = TimeSpan.FromDays(365); })
     .AddOrderManagementApplication()
     .AddProblemDetails()
+    .AddExceptionHandler<ValidationExceptionHandler>()
     .AddExceptionHandler<GlobalExceptionHandler>()
     .AddDbContext<OrderManagementDbContext>()
     .AddDatabaseContext(builder.Configuration)
+    .AddControllers();
+
+builder.Services
     .AddHealthChecks()
-        .AddDatabaseServerHealthCheck(builder.Configuration);
+    .AddDatabaseServerHealthCheck(builder.Configuration);
 
 var app = builder.Build();
 
@@ -33,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
 app.MapHealthChecks("health");
+
+app.MapControllers();
 
 await app
     .InitializeDatabase()

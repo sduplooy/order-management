@@ -4,3 +4,21 @@ GET {{HostAddress}}/health
 Accept: application/json
 
 ###
+
+GET {{HostAddress}}/products
+Accept: application/json
+
+### Create Product
+
+POST {{HostAddress}}/products
+Content-Type: application/json
+
+{
+  "name": "Product 2",
+  "price": 101
+}
+
+### Get Products
+
+GET {{HostAddress}}/products
+Accept: application/json

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Http;
 using Moq;
-using OrderManagement.Api.Handlers;
+using OrderManagement.Api.Web.Handlers;
 using Shouldly;
 
-namespace OrderManagement.Api.UnitTests.Handlers;
+namespace OrderManagement.Api.UnitTests.Web.Handlers;
 
 public class When_catching_an_unhandled_exception
 {
