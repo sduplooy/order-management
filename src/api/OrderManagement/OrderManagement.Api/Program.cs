@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using OrderManagement.Api.Application.Composition;
 using OrderManagement.Api.Handlers;
 using OrderManagement.Api.Infrastructure.Composition;
 using OrderManagement.Api.Infrastructure.Database;
@@ -14,6 +15,7 @@ builder.Configuration
 builder.Services
     .AddOpenApi()
     .AddHsts(opts => { opts.MaxAge = TimeSpan.FromDays(365); })
+    .AddOrderManagementApplication()
     .AddProblemDetails()
     .AddExceptionHandler<GlobalExceptionHandler>()
     .AddDbContext<OrderManagementDbContext>()
@@ -23,14 +25,16 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseHsts();
+app.UseHttpsRedirection();
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
 app.MapHealthChecks("health");
 
-app.UseHsts();
-app.UseHttpsRedirection();
-
 await app
     .InitializeDatabase()
     .RunAsync();
+    
