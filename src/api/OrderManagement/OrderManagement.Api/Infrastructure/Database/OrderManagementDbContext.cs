@@ -5,13 +5,15 @@ using OrderManagement.Api.Infrastructure.Database.ValueConverters;
 
 namespace OrderManagement.Api.Infrastructure.Database;
 
-public class OrderManagementDbContext(DbContextOptions<OrderManagementDbContext> options) : DbContext(options)
+public interface IOrderManagementDbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer();
-    }
+    DbSet<Product> Products { get; }
+    DbSet<Order> Orders { get; }
+}
 
+public class OrderManagementDbContext(DbContextOptions<OrderManagementDbContext> options) 
+    : DbContext(options), IOrderManagementDbContext
+{
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

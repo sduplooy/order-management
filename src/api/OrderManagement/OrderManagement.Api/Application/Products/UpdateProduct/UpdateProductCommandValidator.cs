@@ -2,13 +2,13 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using OrderManagement.Api.Infrastructure.Database;
 
-namespace OrderManagement.Api.Application.Products.CreateProduct;
+namespace OrderManagement.Api.Application.Products.UpdateProduct;
 
-public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
 {
     private readonly OrderManagementDbContext _context;
 
-    public CreateProductCommandValidator(OrderManagementDbContext context)
+    public UpdateProductCommandValidator(OrderManagementDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
 

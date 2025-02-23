@@ -4,7 +4,7 @@ using OrderManagement.Api.Infrastructure.Composition;
 using OrderManagement.Api.Infrastructure.Database;
 using OrderManagement.Api.Web.Handlers;
 
-[assembly: InternalsVisibleTo("OrderManagement.Api.UnitTests")]
+[assembly: InternalsVisibleTo("OrderManagement.Api.Tests")]
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,7 @@ builder.Services
     .AddHsts(opts => { opts.MaxAge = TimeSpan.FromDays(365); })
     .AddOrderManagementApplication()
     .AddProblemDetails()
-    .AddExceptionHandler<ValidationExceptionHandler>()
+    .AddExceptionHandler<KnownExceptionsHandler>()
     .AddExceptionHandler<GlobalExceptionHandler>()
     .AddDbContext<OrderManagementDbContext>()
     .AddDatabaseContext(builder.Configuration)

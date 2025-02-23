@@ -4,10 +4,9 @@ using OrderManagement.Api.Infrastructure.Database;
 
 namespace OrderManagement.Api.Application.Products.CreateProduct;
 
-public class CreateTodoListCommandHandler(OrderManagementDbContext context)
-    : IRequestHandler<CreateProductCommand, ProductId>
+public class CreateProductHandler(OrderManagementDbContext context) : IRequestHandler<CreateProductCommand, Guid>
 {
-    public async Task<ProductId> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         var product = new Product
         {
@@ -19,6 +18,6 @@ public class CreateTodoListCommandHandler(OrderManagementDbContext context)
         await context.Products.AddAsync(product, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
         
-        return product.Id;
+        return product.Id.Value;
     }
 }

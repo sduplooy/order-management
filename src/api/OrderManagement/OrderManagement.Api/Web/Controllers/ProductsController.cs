@@ -13,14 +13,14 @@ public class ProductsController(IMediator mediator) : ControllerBase
     [HttpGet]
     public Task<IEnumerable<Product>> GetProducts(CancellationToken cancellationToken)
     {
-        return mediator.Send(new FetchAllProducts(), cancellationToken);
+        return mediator.Send(new FetchAllProductsQuery(), cancellationToken);
     }
     
     [HttpPost]
     [Consumes("application/json")]
     public async Task<Created<Guid>> CreateProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var response = await mediator.Send(command, cancellationToken);
-        return TypedResults.Created($"/products/{response.Value}", response.Value);
+        var id = await mediator.Send(command, cancellationToken);
+        return TypedResults.Created($"/products/{id}", id);
     }
 }

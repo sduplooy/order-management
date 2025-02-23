@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Api", "OrderManagement.Api\OrderManagement.Api.csproj", "{FDB342DC-E15B-4BF8-8FE6-78803D361483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Api.UnitTests", "OrderManagement.Api.UnitTests\OrderManagement.Api.UnitTests.csproj", "{A70B6C9C-3EC7-4350-99EA-F44B70160561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Api.Tests", "OrderManagement.Api.Tests\OrderManagement.Api.Tests.csproj", "{A70B6C9C-3EC7-4350-99EA-F44B70160561}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

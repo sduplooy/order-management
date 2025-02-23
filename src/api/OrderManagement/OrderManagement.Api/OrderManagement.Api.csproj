@@ -26,6 +26,15 @@
       <Compile Update="Web\Handlers\GlobalExceptionHandler.cs">
         <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
       </Compile>
+      <Compile Update="Application\Products\UpdateProduct\UpdateProductHandler.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+      </Compile>
+      <Compile Update="Application\Products\UpdateProduct\UpdateProductCommandValidator.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+      </Compile>
+      <Compile Update="Application\Products\UpdateProduct\UpdateProductCommand.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+      </Compile>
     </ItemGroup>
 
 </Project>

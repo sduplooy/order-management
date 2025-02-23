@@ -1,11 +1,8 @@
 @HostAddress = https://localhost:7078
 
+### Health Check
+
 GET {{HostAddress}}/health
-Accept: application/json
-
-###
-
-GET {{HostAddress}}/products
 Accept: application/json
 
 ### Create Product
@@ -14,7 +11,7 @@ POST {{HostAddress}}/products
 Content-Type: application/json
 
 {
-  "name": "Product 2",
+  "name": "Product 3",
   "price": 101
 }
 

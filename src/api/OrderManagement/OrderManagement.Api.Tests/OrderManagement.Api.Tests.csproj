@@ -5,10 +5,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
+        <RootNamespace>OrderManagement.Api.UnitTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1"/>
         <PackageReference Include="Moq" Version="4.20.72" />
         <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
@@ -35,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Web\" />
+      <Folder Include="Web\Controllers\" />
     </ItemGroup>
 
 </Project>

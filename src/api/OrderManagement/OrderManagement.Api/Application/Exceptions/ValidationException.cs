@@ -2,7 +2,7 @@ using FluentValidation.Results;
 
 namespace OrderManagement.Api.Application.Exceptions;
 
-public class ValidationException() : Exception("One or more validation failures have occurred.")
+internal class ValidationException() : Exception("One or more validation failures have occurred.")
 {
     public ValidationException(IEnumerable<ValidationFailure> failures) : this()
     {
