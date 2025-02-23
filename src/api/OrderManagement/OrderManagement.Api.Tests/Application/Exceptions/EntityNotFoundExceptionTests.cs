@@ -4,7 +4,7 @@ using Shouldly;
 
 namespace OrderManagement.Api.UnitTests.Application.Exceptions;
 
-public class EntityNotFoundExceptionTests
+public class When_constructing_an_entity_not_found_exception
 {
     [Fact]
     public void It_should_set_the_error_message_based_on_type_and_id()

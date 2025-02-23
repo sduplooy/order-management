@@ -19,3 +19,20 @@ Content-Type: application/json
 
 GET {{HostAddress}}/products
 Accept: application/json
+
+### Update Product
+
+POST {{HostAddress}}/products
+Content-Type: application/json
+
+{
+  "id": "e80feba9-e5f7-4cb2-b5ea-e439ed2a7138",
+  "name": "Updated Product",
+  "price": 1025.00
+}
+
+
+### Delete Product
+
+DELETE {{HostAddress}}/products/e80feba9-e5f7-4cb2-b5ea-e439ed2a7138
+

@@ -6,19 +6,19 @@ using Shouldly;
 
 namespace OrderManagement.Api.UnitTests.Application.Products.Queries;
 
-public class When_calling_handle_on_fetch_all_products_handler : IDisposable
+public class When_calling_handle_on_all_products_query_handler : IDisposable
 {
-    private readonly FetchAllProductsHandler _handler;
+    private readonly AllProductsQueryHandler _queryHandler;
     private readonly OrderManagementDbContext _dbContext;
 
-    public When_calling_handle_on_fetch_all_products_handler()
+    public When_calling_handle_on_all_products_query_handler()
     {
         var options = new DbContextOptionsBuilder<OrderManagementDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
     
         _dbContext = new OrderManagementDbContext(options);
-        _handler = new FetchAllProductsHandler(_dbContext);
+        _queryHandler = new AllProductsQueryHandler(_dbContext);
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public class When_calling_handle_on_fetch_all_products_handler : IDisposable
         _dbContext.Products.AddRange(products);
         await _dbContext.SaveChangesAsync();
 
-        var result = await _handler.Handle(new FetchAllProductsQuery(), CancellationToken.None);
+        var result = await _queryHandler.Handle(new AllProductsQuery(), CancellationToken.None);
 
         result.ShouldNotBeNull();
         result.ShouldContain(p => p.Name == "Product1" && p.Price == 10.0M);
@@ -43,7 +43,7 @@ public class When_calling_handle_on_fetch_all_products_handler : IDisposable
     [Fact]
     public async Task It_should_return_empty_list_when_no_products_exist()
     {
-        var result = await _handler.Handle(new FetchAllProductsQuery(), CancellationToken.None);
+        var result = await _queryHandler.Handle(new AllProductsQuery(), CancellationToken.None);
 
         result.ShouldNotBeNull();
         result.ShouldBeEmpty();

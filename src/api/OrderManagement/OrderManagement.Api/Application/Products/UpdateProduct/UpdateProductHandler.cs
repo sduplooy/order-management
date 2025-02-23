@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using OrderManagement.Api.Application.Exceptions;
 using OrderManagement.Api.Domain.Entities;
 using OrderManagement.Api.Infrastructure.Database;
@@ -9,7 +10,7 @@ public class UpdateProductHandler(OrderManagementDbContext context) : IRequestHa
 {
     public async Task<Guid> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        var product = context.Find<Product>(new ProductId(request.Id));
+        var product = await context.Products.SingleOrDefaultAsync(p => p.Id == new ProductId(request.Id), cancellationToken);
         
         if(product == null)
             throw new EntityNotFoundException(typeof(Product), request.Id);

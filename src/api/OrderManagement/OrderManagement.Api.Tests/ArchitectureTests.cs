@@ -32,8 +32,28 @@ public class ArchitectureTests
     }
     
     [Fact]
-    public void Domain_objects_should_not_be_public()
+    public void Domain_should_not_depend_on_web()
     {
+        var result = Types.InAssembly(typeof(IApiAssemblyMarker).Assembly)
+            .That()
+            .ResideInNamespace("OrderManagement.Api.Domain")
+            .ShouldNot()
+            .HaveDependencyOn("OrderManagement.Api.Web")
+            .GetResult();
 
+        result.IsSuccessful.ShouldBeTrue();
+    }
+    
+    [Fact]
+    public void Domain_should_not_depend_on_application()
+    {
+        var result = Types.InAssembly(typeof(IApiAssemblyMarker).Assembly)
+            .That()
+            .ResideInNamespace("OrderManagement.Api.Domain")
+            .ShouldNot()
+            .HaveDependencyOn("OrderManagement.Api.Application")
+            .GetResult();
+
+        result.IsSuccessful.ShouldBeTrue();
     }
 }

@@ -36,8 +36,4 @@
       <ProjectReference Include="..\OrderManagement.Api\OrderManagement.Api.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Web\Controllers\" />
-    </ItemGroup>
-
 </Project>
