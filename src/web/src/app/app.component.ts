@@ -9,7 +9,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     <div class="main-container">
       <header class="header-6">
         <div class="branding">
-          <a href="javascript://">
+          <a routerLink="home">
             <span class="title">{{this.title}}</span>
           </a>
         </div>

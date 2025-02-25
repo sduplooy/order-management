@@ -13,8 +13,9 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.Services
-    .AddOpenApi()
     .AddHsts(opts => { opts.MaxAge = TimeSpan.FromDays(365); })
+    .AddCors()
+    .AddOpenApi()
     .AddOrderManagementApplication()
     .AddProblemDetails()
     .AddExceptionHandler<KnownExceptionsHandler>()
@@ -29,9 +30,17 @@ builder.Services
 
 var app = builder.Build();
 
+
 app.UseHsts();
 app.UseHttpsRedirection();
+
 app.UseExceptionHandler();
+
+app.UseCors(policyBuilder => policyBuilder
+    .WithOrigins("http://localhost:4200")
+    .WithMethods("GET", "POST", "PUT", "DELETE")
+    .AllowAnyHeader()
+);
 
 if (app.Environment.IsDevelopment())
     app.MapOpenApi();

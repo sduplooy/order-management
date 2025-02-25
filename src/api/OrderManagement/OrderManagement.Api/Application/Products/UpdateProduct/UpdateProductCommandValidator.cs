@@ -16,6 +16,7 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
             .NotEmpty()
             .MaximumLength(200)
             .MustAsync(BeUnique)
+            .Unless((command, validationContext) => command.Id == validationContext.InstanceToValidate.Id)
             .WithMessage("{PropertyName} must be unique.")
             .WithErrorCode("ProductNameNotUnique");
 
@@ -25,7 +26,7 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
             .WithErrorCode("PriceLessThanZero");
     }
 
-    private async Task<bool> BeUnique(string name, CancellationToken cancellationToken)
+    private async Task<bool> BeUnique(string name,  CancellationToken cancellationToken)
     {
         return !await _context.Products.AnyAsync(l => l.Name == name, cancellationToken);
     }
